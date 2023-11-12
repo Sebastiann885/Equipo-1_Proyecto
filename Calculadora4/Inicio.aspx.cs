@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -15,124 +16,68 @@ namespace Calculadora4
 
         } 
 
-        protected void btn1_Click(object sender, EventArgs e) // Numero 1
+
+        //Digitacion de numeros
+        private void leerNumero (string numero)
+
         {
-            if((CajaTexto.Text == "+") || (CajaTexto.Text == "-") || (CajaTexto.Text == "*") || (CajaTexto.Text == "/"))
+            Global.unNumeroLeido = true;
+
+            if ((CajaTexto.Text == "+") || (CajaTexto.Text == "-") || (CajaTexto.Text == "*") || (CajaTexto.Text == "/") || (CajaTexto.Text == "^") || (CajaTexto.Text == "0"))
             {
                 CajaTexto.Text = "";
-                CajaTexto.Text = CajaTexto.Text + btn1.Text;
-            } else
-            {
-                CajaTexto.Text = CajaTexto.Text + btn1.Text;
+                CajaTexto.Text = CajaTexto.Text + numero;
             }
+            else
+            {
+                CajaTexto.Text = CajaTexto.Text + numero;
+            }
+
+
+        }
+
+        protected void btn1_Click(object sender, EventArgs e) // Numero 1
+        {
+            leerNumero("1");
         }
         protected void btn2_Click(object sender, EventArgs e) // Numero 2
         {
-            if ((CajaTexto.Text == "+") || (CajaTexto.Text == "-") || (CajaTexto.Text == "*") || (CajaTexto.Text == "/"))
-            {
-                CajaTexto.Text = "";
-                CajaTexto.Text = CajaTexto.Text + btn2.Text;
-            }
-            else
-            {
-                CajaTexto.Text = CajaTexto.Text + btn2.Text;
-            }
+            leerNumero("2");
         }
         protected void btn3_Click(object sender, EventArgs e) // Numero 3
         {
-            if ((CajaTexto.Text == "+") || (CajaTexto.Text == "-") || (CajaTexto.Text == "*") || (CajaTexto.Text == "/"))
-            {
-                CajaTexto.Text = "";
-                CajaTexto.Text = CajaTexto.Text + btn3.Text;
-            }
-            else
-            {
-                CajaTexto.Text = CajaTexto.Text + btn3.Text;
-            }
+            leerNumero("3");
         }       
         protected void btn4_Click(object sender, EventArgs e) // Numero 4
         {
-            if ((CajaTexto.Text == "+") || (CajaTexto.Text == "-") || (CajaTexto.Text == "*") || (CajaTexto.Text == "/"))
-            {
-                CajaTexto.Text = "";
-                CajaTexto.Text = CajaTexto.Text + btn4.Text;
-            }
-            else
-            {
-                CajaTexto.Text = CajaTexto.Text + btn4.Text;
-            }
+            leerNumero("4");
         }   
         protected void btn5_Click(object sender, EventArgs e) // Numero 5
         {
-            if ((CajaTexto.Text == "+") || (CajaTexto.Text == "-") || (CajaTexto.Text == "*") || (CajaTexto.Text == "/"))
-            {
-                CajaTexto.Text = "";
-                CajaTexto.Text = CajaTexto.Text + btn5.Text;
-            }
-            else
-            {
-                CajaTexto.Text = CajaTexto.Text + btn5.Text;
-            }
+            leerNumero("5");
         }       
         protected void btn6_Click(object sender, EventArgs e) // Numero 6
         {
-            if ((CajaTexto.Text == "+") || (CajaTexto.Text == "-") || (CajaTexto.Text == "*") || (CajaTexto.Text == "/"))
-            {
-                CajaTexto.Text = "";
-                CajaTexto.Text = CajaTexto.Text + btn6.Text;
-            }
-            else
-            {
-                CajaTexto.Text = CajaTexto.Text + btn6.Text;
-            }
+            leerNumero("6");
         }
         protected void btn7_Click(object sender, EventArgs e) // Numero 7
         {
-            if ((CajaTexto.Text == "+") || (CajaTexto.Text == "-") || (CajaTexto.Text == "*") || (CajaTexto.Text == "/"))
-            {
-                CajaTexto.Text = "";
-                CajaTexto.Text = CajaTexto.Text + btn7.Text;
-            }
-            else
-            {
-                CajaTexto.Text = CajaTexto.Text + btn7.Text;
-            }
+            leerNumero("7");
         }
         protected void btn8_Click(object sender, EventArgs e) // Numero 8
         {
-            if ((CajaTexto.Text == "+") || (CajaTexto.Text == "-") || (CajaTexto.Text == "*") || (CajaTexto.Text == "/"))
-            {
-                CajaTexto.Text = "";
-                CajaTexto.Text = CajaTexto.Text + btn8.Text;
-            }
-            else
-            {
-                CajaTexto.Text = CajaTexto.Text + btn8.Text;
-            }
+            leerNumero("8");
         }
         protected void btn9_Click(object sender, EventArgs e) // Numero 9
         {
-            if ((CajaTexto.Text == "+") || (CajaTexto.Text == "-") || (CajaTexto.Text == "*") || (CajaTexto.Text == "/"))
-            {
-                CajaTexto.Text = "";
-                CajaTexto.Text = CajaTexto.Text + btn9.Text;
-            }
-            else
-            {
-                CajaTexto.Text = CajaTexto.Text + btn9.Text;
-            }
+            leerNumero("9");
         }       
         protected void Button24_Click(object sender, EventArgs e) // numero 0
         {
-            if ((CajaTexto.Text == "+") || (CajaTexto.Text == "-") || (CajaTexto.Text == "*") || (CajaTexto.Text == "/"))
-            {
-                CajaTexto.Text = "";
-                CajaTexto.Text = CajaTexto.Text + btn0.Text;
-            }
-            else
-            {
-                CajaTexto.Text = CajaTexto.Text + btn0.Text;
-            }
+            if (CajaTexto.Text == "0") { return; }
+
+
+            else { leerNumero("0"); }
         }     
 
         // Operaciones Basicas
@@ -173,31 +118,53 @@ namespace Calculadora4
                 Global.Resultado = Global.Valor1 + Global.Valor2;
                 CajaTexto.Text += Global.Resultado;
                 Global.Valor1 = Global.Resultado;
-            } else if(Global.O == '/')
+            } 
+            else if(Global.O == '/')
             {
-                Global.Resultado = Global.Valor1 / Global.Valor2;
-                CajaTexto.Text += Global.Resultado;
-                Global.Valor1 = Global.Resultado;
+
+                if (Global.Valor2 == 0) { ErrorLabel1.Text = "Error: No se puede dividir entre 0."; Global.Resultado = 0; }//*
+                else {
+                    Global.Resultado = Global.Valor1 / Global.Valor2;
+                    CajaTexto.Text += Global.Resultado;
+                    Global.Valor1 = Global.Resultado;
+                }
+
+                
             }
-             else if (Global.O == '-')
+            else if (Global.O == '-') 
             {
+
+
                 Global.Resultado = Global.Valor1 - Global.Valor2;
                 CajaTexto.Text += Global.Resultado;
                 Global.Valor1 = Global.Resultado;
-            } else
+            }
+
+
+            else if (Global.O == '^')
+            {
+                Global.Resultado = Math.Pow(Global.Valor1, Global.Valor2);
+                CajaTexto.Text += Global.Resultado;
+                Global.Valor1 = Global.Resultado;
+
+            }
+
+            else
             {
                 Global.Resultado = Global.Valor1 * Global.Valor2;
                 CajaTexto.Text += Global.Resultado;
                 Global.Valor1 = Global.Resultado;
             }
+
         }
 
 
 
-        // Eventos de Eliminacion de Datos y el punto
+        // Metodos de Eliminacion de Datos y el punto
         protected void btnLimpiarPantalla_Click(object sender, EventArgs e) // Limpiar Pantalla
         {
-            CajaTexto.Text = "";
+            CajaTexto.Text = "0";
+            ErrorLabel1.Text = "-";
         }
 
         protected void btnBorrar_Click(object sender, EventArgs e) // Eliminar Digitos
@@ -217,7 +184,8 @@ namespace Calculadora4
                 }
             } else
             {
-                CajaTexto.Text = "";
+                CajaTexto.Text = "0";
+                ErrorLabel1.Text = "-";
             }
         }
 
@@ -233,57 +201,134 @@ namespace Calculadora4
         // Operaciones Cientificas
         protected void btnPotencia_Click(object sender, EventArgs e) // x²
         {
-            double num = Convert.ToDouble(CajaTexto.Text);
-            double resu = Math.Pow(num, 2);
-            CajaTexto.Text = resu.ToString();
+            if (Global.unNumeroLeido is false)
+            {
+                ErrorLabel1.Text = "Error: Digita antes X valor y luego la operacion (x²)";
+
+            }
+
+            else
+            {
+                double num = Convert.ToDouble(CajaTexto.Text);
+                double resu = Math.Pow(num, 2);
+                CajaTexto.Text = resu.ToString();
+                ErrorLabel1.Text = "-";
+            }
 
         }
 
         protected void btnLog_Click(object sender, EventArgs e) // Log
         {
-            double num = Convert.ToDouble(CajaTexto.Text);
-            double resu = Math.Log10(num);
-            CajaTexto.Text = resu.ToString();
+            if (Global.unNumeroLeido is false)
+            {
+                ErrorLabel1.Text = "Error: Digita antes X valor y luego la operacion (Log)";
+
+            }
+            else
+            {
+                double num = Convert.ToDouble(CajaTexto.Text);
+                double resu = Math.Log10(num);
+                CajaTexto.Text = resu.ToString();
+                ErrorLabel1.Text = "-";
+            }
+
+            
         }
 
-        protected void btnBase10_Click(object sender, EventArgs e) // 10^y
+        protected void btnBase10_Click(object sender, EventArgs e) // 10^x
         {
-            double num = Convert.ToDouble(CajaTexto.Text);
-            double resu = Math.Pow(10, num);
-            CajaTexto.Text = resu.ToString();
+            if (Global.unNumeroLeido is false)
+            {
+                ErrorLabel1.Text = "Error: Digita antes X valor y luego la operacion (10^x)";
+
+            }
+            else
+
+            {
+                double num = Convert.ToDouble(CajaTexto.Text);
+                double resu = Math.Pow(10, num);
+                CajaTexto.Text = resu.ToString();
+                ErrorLabel1.Text = "-";
+
+            }
+
+                
         } 
 
-        protected void btnPotencia2_Click(object sender, EventArgs e)
+        protected void btnPotencia2_Click(object sender, EventArgs e) // x^y
         {
-            double num = Convert.ToDouble(CajaTexto.Text);
-            double resu = Math.Pow(2, num);
-            CajaTexto.Text = resu.ToString();
-        } // x^y
+            if (Global.unNumeroLeido is false)
+            {
+                ErrorLabel1.Text = "Error: Digita antes X valor y luego la operacion (x^y)";
+
+            }
+
+            else
+            {
+                Global.Valor1 = Convert.ToDouble(CajaTexto.Text);
+                CajaTexto.Text = "";
+                Global.O = '^';
+                CajaTexto.Text += Global.O;
+                ErrorLabel1.Text = "-";
+            }
+            
+
+
+        } 
 
         protected void btnRaiz_Click(object sender, EventArgs e)
         {
-            double num = Convert.ToDouble(CajaTexto.Text);
-            double resu = Math.Sqrt(num);
-            CajaTexto.Text = resu.ToString();
+        if (Global.unNumeroLeido is false)
+            {
+                ErrorLabel1.Text = "Error: Digita antes X valor y luego la operacion (²√)";
+
+            }
+        else
+            {
+                double num = Convert.ToDouble(CajaTexto.Text);
+                double resu = Math.Sqrt(num);
+                CajaTexto.Text = resu.ToString();
+                ErrorLabel1.Text = "-";
+
+            }
+               
+
+            
         } // Raiz ²√
 
         protected void btnFactorial_Click(object sender, EventArgs e)
         {
-            int valor = Convert.ToInt32(CajaTexto.Text);
 
-            if (valor < 0)
+            if (Global.unNumeroLeido is false)
             {
-                CajaTexto.Text = "Error de syntaxis";
+                ErrorLabel1.Text = "Error: Digita antes X valor y luego la operacion (n!)";
+
             }
+
             else
             {
-                int resultado = 1;
-                for (int i = 2; i <= valor; i++)
+                double valor = Convert.ToDouble(CajaTexto.Text);
+                if (valor < 0)
                 {
-                    resultado *= i;
+                    CajaTexto.Text = "Error de syntaxis";
                 }
-                CajaTexto.Text = resultado.ToString();
+                else
+                {
+                    int resultado = 1;
+                    for (int i = 2; i <= valor; i++)
+                    {
+                        resultado *= i;
+                    }
+                    CajaTexto.Text = resultado.ToString();
+                }
+                ErrorLabel1.Text = "-";
+
             }
+
+            
+
+            
+            
         } // n!
         protected void Button23_Click(object sender, EventArgs e) // Intercambiar el simbolo actual +/-
         {

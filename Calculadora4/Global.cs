@@ -12,5 +12,7 @@ namespace Calculadora4
         static public double Resultado { get; set; }
         static public char O { get; set; }
 
+        static public bool unNumeroLeido { get; set; }
+
     }
 }
